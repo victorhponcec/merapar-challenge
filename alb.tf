@@ -25,7 +25,7 @@ resource "aws_lb_target_group" "tg_a" {
 }
 
 resource "aws_autoscaling_attachment" "asg_lba" {
-  autoscaling_group_name = aws_autoscaling_group.asg_1.id
+  autoscaling_group_name = aws_autoscaling_group.asg_1.name #modified .id for .name > check issues
   lb_target_group_arn    = aws_lb_target_group.tg_a.arn
 }
 

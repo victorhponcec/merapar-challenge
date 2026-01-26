@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "asg_1" {
 
   lifecycle {
     ignore_changes = [desired_capacity]
-  }
+  } 
 }
 
 resource "aws_autoscaling_policy" "scale_out" {
