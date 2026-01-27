@@ -28,9 +28,9 @@ resource "aws_security_group" "lba" {
 resource "aws_vpc_security_group_ingress_rule" "lba_allow_443" {
   security_group_id = aws_security_group.lba.id
   prefix_list_id    = data.aws_ec2_managed_prefix_list.cloudfront.id
-  from_port   = 443
-  to_port     = 443
-  ip_protocol = "tcp"
+  from_port         = 443
+  to_port           = 443
+  ip_protocol       = "tcp"
 }
 data "aws_ec2_managed_prefix_list" "cloudfront" {
   name = "com.amazonaws.global.cloudfront.origin-facing"

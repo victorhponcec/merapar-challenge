@@ -26,7 +26,7 @@ variable "domain" {
   default     = "victorponce.site"
 }
 
-variable "ubuntu24" {
-  description = "ubuntu 24.04 LTS"
-  default     = "ami-0ecb62995f68bb549"
+variable "amazon_linux_2023" {
+  description = "Amazon Linux 2023"
+  default     = "ami-05576a079321f21f8"
 }

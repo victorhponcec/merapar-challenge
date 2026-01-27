@@ -1,7 +1,7 @@
 #ASG WEB
 resource "aws_launch_template" "web" {
   name_prefix   = "web"
-  image_id      = var.ubuntu24
+  image_id      = var.amazon_linux_2023
   instance_type = "t2.micro"
   network_interfaces {
     associate_public_ip_address = false
@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "asg_1" {
 
   lifecycle {
     ignore_changes = [desired_capacity]
-  } 
+  }
 }
 
 resource "aws_autoscaling_policy" "scale_out" {
