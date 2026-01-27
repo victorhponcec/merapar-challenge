@@ -1,6 +1,6 @@
 resource "aws_cloudfront_distribution" "cf_dist" {
   enabled = true
-  #default_root_object = "index.html" //removed to work with Jenkins
+  #default_root_object = "index.html" //removed to pass root path to alb (dynamic)
   web_acl_id = aws_wafv2_web_acl.cf_waf.arn
 
   origin {

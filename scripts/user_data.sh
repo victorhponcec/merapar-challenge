@@ -1,22 +1,15 @@
 #!/bin/bash
 set -eux
-
-# --- System update ---
 yum update -y
-
-# --- Install Apache + AWS CLI ---
 yum install -y httpd awscli
-
-# --- Enable & start Apache ---
 systemctl enable httpd
 systemctl start httpd
 
-# --- Create CGI directory ---
 mkdir -p /var/www/cgi-bin
 chown -R apache:apache /var/www
 chmod -R 755 /var/www
 
-# --- CGI script (reads from DynamoDB every request) ---
+# CGI script
 cat <<'EOF' > /var/www/cgi-bin/index.cgi
 #!/bin/bash
 echo "Content-Type: text/html"
@@ -35,7 +28,7 @@ EOF
 chmod +x /var/www/cgi-bin/index.cgi
 chown apache:apache /var/www/cgi-bin/index.cgi
 
-# --- Enable CGI + root rewrite (CONF.D, not httpd.conf) ---
+#Enable CGI in httpd.conf
 cat <<'EOF' > /etc/httpd/conf.d/cgi-root.conf
 # Serve CGI at /cgi-bin
 ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
@@ -58,11 +51,9 @@ ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
 </Directory>
 EOF
 
-# --- Health check endpoint ---
 echo "OK" > /var/www/html/health
 chown apache:apache /var/www/html/health
 chmod 644 /var/www/html/health
 
-# --- Validate & restart Apache ---
 httpd -t
 systemctl restart httpd
