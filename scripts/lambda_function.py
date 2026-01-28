@@ -12,7 +12,7 @@ def lambda_handler(event, context):
             TableName="dynamic-content",
             Item={
                 "id": {"S": "root"},
-                "content": {"S": f"The saved string is {dynamic_string}"}
+                "content": {"S": f"<h1>The saved string is {dynamic_string}</h1>"}
             }
         )
         

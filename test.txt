@@ -1,0 +1,6 @@
+Test from API Gateway:
+
+curl -X POST https://xxxxxx.execute-api.us-east-1.amazonaws.com/prod/update \
+  -H "Content-Type: application/json" \
+  -d '{"dynamicstring":"victor update string"}'
+
